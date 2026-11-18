@@ -1,0 +1,224 @@
+.AppShell {
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.WorkspaceMainRow {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.WorkspaceSidebar {
+  width: 268px;
+  min-width: 220px;
+  max-width: 340px;
+  flex: 0 0 268px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.WorkspaceSidebar.is-collapsed {
+  display: none;
+}
+
+.WorkspaceCollapsedRail {
+  flex: 0 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  background: var(--color-surface-soft);
+  border-right: 1px solid var(--color-border);
+}
+
+.WorkspaceCollapsedRailBtn {
+  width: 22px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font: 600 12px/1 inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.WorkspaceCollapsedRailBtn:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.WorkspaceViewport {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.WorkspacePrimaryPane {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 14px 16px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--color-surface);
+}
+
+.WorkspaceSplitPane {
+  flex: 0 0 46%;
+  min-width: 320px;
+  max-width: 58%;
+  min-height: 0;
+  padding: 14px 16px;
+  border-left: 1px solid var(--color-border);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--color-surface-soft);
+}
+
+.WorkspaceViewPane {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.WorkspaceViewCard {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.WorkspaceViewBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.SplitPaneHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.SplitPaneCloseBtn,
+.AstPhase0ToggleBtn {
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.ArtifactBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  font-size: 12px;
+  color: var(--color-text);
+}
+
+.ArtifactBannerBtn {
+  height: 24px;
+  padding: 0 9px;
+  border-radius: 5px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.PaneMeta {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin: 4px 0 8px;
+  word-break: break-all;
+}
+
+section > h2 {
+  margin: 0;
+  color: var(--color-title);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .WorkspaceMainRow {
+    flex-direction: column;
+  }
+
+  .WorkspaceSidebar {
+    width: 100%;
+    max-width: none;
+    flex: 0 0 auto;
+    max-height: 250px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .WorkspaceSidebar.is-collapsed {
+    flex-basis: 0;
+    height: 0;
+    border-bottom: none;
+  }
+
+  .WorkspaceViewport {
+    flex-direction: column;
+  }
+
+  .WorkspaceSplitPane {
+    min-width: 0;
+    max-width: none;
+    flex: 0 0 42%;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+  }
+}

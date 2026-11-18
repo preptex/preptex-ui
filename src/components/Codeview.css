@@ -1,0 +1,127 @@
+.CodeviewTitle {
+  margin: 0;
+  color: var(--color-title);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+.CodeviewFilename {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.CodeviewPre {
+  margin: 0;
+  max-width: none;
+  min-width: 0;
+  flex: 1 1 auto;
+  padding: 12px;
+  box-sizing: border-box;
+  /* Scrolling handled by container so line numbers stay synced */
+  overflow: visible;
+  white-space: pre;
+  border: 1px solid var(--color-border);
+}
+
+.CodeviewContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-sizing: border-box;
+  box-shadow: none;
+}
+
+.CodeviewHeader {
+  min-width: 0;
+}
+
+.CodeviewEditor {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-sizing: border-box;
+}
+
+.CodeviewEditor .cm-editor {
+  height: 100%;
+}
+
+.CodeviewEditor .cm-scroller {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 12px;
+}
+
+.CodeviewGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  min-width: 100%;
+  padding: 12px 0;
+}
+
+.LineNumberCell {
+  padding: 0 8px;
+  box-sizing: border-box;
+  color: var(--color-text-muted);
+  text-align: right;
+  user-select: none;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface);
+  min-width: 3.2em;
+  white-space: pre;
+}
+
+.CodeCell {
+  padding: 0 12px;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.LineNumberCell,
+.CodeCell {
+  /* Match the previous pre padding visually */
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 1.4;
+}
+
+.LineNumbers {
+  margin: 0;
+  padding: 12px 8px;
+  box-sizing: border-box;
+  color: var(--color-text-muted);
+  text-align: right;
+  user-select: none;
+  border: 1px solid transparent;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface);
+  min-width: 3.2em;
+  /* Let container control scrolling; allow full height content */
+  overflow: visible;
+}
