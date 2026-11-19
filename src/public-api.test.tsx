@@ -35,6 +35,8 @@ describe('@preptex/ui public API & edge cases', () => {
     expect(typeof PublicUi.createZipArchive).toBe('function');
     expect(typeof PublicUi.readZipFileNames).toBe('function');
     expect(typeof PublicUi.filterUploadedBatch).toBe('function');
+    expect(typeof PublicUi.ACCEPTED_TEX_EXTENSIONS).toBe('string');
+    expect(PublicUi.ACCEPTED_TEX_EXTENSIONS.includes('.tex')).toBe(true);
     expect(typeof PublicUi.buildNewFileOutputs).toBe('function');
     expect(PublicUi.DEFAULT_DEMO_PROJECT_FILES['main.tex']).toContain('\\documentclass');
 

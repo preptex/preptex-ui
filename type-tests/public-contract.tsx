@@ -22,6 +22,7 @@ import {
   WelcomeEmptyState,
   WorkspaceHeader,
   applyProjectEditsToFilesMap,
+  ACCEPTED_TEX_EXTENSIONS,
   buildNewFileOutputs,
   createZipArchive,
   extractDroppedFiles,
@@ -200,6 +201,7 @@ void normalizeUploadedBatch;
 void readZipFileNames;
 void recommendEntry;
 void RELEVANT_TEX_EXTENSIONS;
+void ACCEPTED_TEX_EXTENSIONS;
 void useArtifacts;
 void useControl;
 void useFiles;

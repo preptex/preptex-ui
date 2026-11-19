@@ -1,6 +1,6 @@
 {
   "name": "@preptex/ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reusable React UI workspace, components, layout/file hooks, and design tokens for PrepTeX applications.",
   "keywords": [
     "preptex",

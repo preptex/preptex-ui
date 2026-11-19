@@ -1128,7 +1128,7 @@ export function PrepTeXWorkspace({
               onDownload={onDownload}
               onRemove={(name) => removeFile(name)}
               onUploadFiles={(fl) => {
-                void upsertFiles(fl);
+                void upsertFiles(fl, { filterExtensions: true });
               }}
               onUploadFolder={(fl) => {
                 void upsertFiles(fl, { filterExtensions: true });

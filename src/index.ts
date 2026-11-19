@@ -50,6 +50,7 @@ export {
 export { extractDroppedFiles, type DroppedFileItem } from './utils/dropEntries';
 export {
   filterUploadedBatch,
+  ACCEPTED_TEX_EXTENSIONS,
   IGNORED_FOLDER_SEGMENTS,
   isRelevantProjectFile,
   RELEVANT_TEX_EXTENSIONS,

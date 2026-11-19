@@ -8,6 +8,7 @@ import {
   type FormEvent,
 } from 'react';
 import { extractDroppedFiles, type DroppedFileItem } from '../utils/dropEntries';
+import { ACCEPTED_TEX_EXTENSIONS } from '../utils/fileFilter';
 import './Filetree.css';
 
 export interface FiletreeProps {
@@ -29,6 +30,7 @@ export interface FiletreeProps {
   readonly uploadFolderTrigger?: number;
   readonly newFileTrigger?: number;
   readonly onCollapseSidebar?: () => void;
+  readonly accept?: string;
 }
 
 type FiletreeNode = {
@@ -295,6 +297,7 @@ export default function Filetree({
   uploadFolderTrigger,
   newFileTrigger,
   onCollapseSidebar,
+  accept = ACCEPTED_TEX_EXTENSIONS,
 }: FiletreeProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const folderInputRef = useRef<HTMLInputElement | null>(null);
@@ -507,6 +510,7 @@ export default function Filetree({
             aria-label="Upload files"
             type="file"
             multiple
+            accept={accept}
             onChange={onFilesChange}
             style={{ display: 'none' }}
           />

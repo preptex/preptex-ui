@@ -5,6 +5,7 @@ import {
   type CustomWorkspaceViewDescriptor,
   type PrepTeXWorkspaceContextValue,
 } from './PrepTeXWorkspace';
+import { ACCEPTED_TEX_EXTENSIONS } from '../utils/fileFilter';
 
 const ORIGIN_SEC = {
   snapshotId: 'snap-1',
@@ -278,5 +279,15 @@ describe('PrepTeXWorkspace extensibility (pure UI, no core runtime)', () => {
       />,
     );
     expect(screen.getByRole('button', { name: 'Open Saved Project' })).toBeInTheDocument();
+  });
+
+  it('configures Upload files input with accept attribute restricting to relevant TeX extensions', () => {
+    render(<PrepTeXWorkspace initialFiles={{ 'main.tex': 'content' }} />);
+
+    const uploadFilesInput = screen.getByLabelText('Upload files');
+    expect(uploadFilesInput).toHaveAttribute('accept', ACCEPTED_TEX_EXTENSIONS);
+    expect(uploadFilesInput.getAttribute('accept')).toContain('.tex');
+    expect(uploadFilesInput.getAttribute('accept')).toContain('.bib');
+    expect(uploadFilesInput.getAttribute('accept')).toContain('.sty');
   });
 });

@@ -18,6 +18,8 @@ export const RELEVANT_TEX_EXTENSIONS: ReadonlySet<string> = new Set([
   '.pgf',
 ]);
 
+export const ACCEPTED_TEX_EXTENSIONS: string = Array.from(RELEVANT_TEX_EXTENSIONS).join(',');
+
 export const IGNORED_FOLDER_SEGMENTS: ReadonlySet<string> = new Set([
   '.git',
   'node_modules',

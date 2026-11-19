@@ -277,9 +277,7 @@ export function useFiles(initial: FilesMap = {}) {
     async (fileList: FileList | readonly File[], options?: UpsertFilesOptions): Promise<void> => {
       try {
         const rawFiles = Array.from(fileList);
-        const shouldFilter =
-          Boolean(options?.filterExtensions) ||
-          rawFiles.some((f) => Boolean(f.webkitRelativePath && f.webkitRelativePath.includes('/')));
+        const shouldFilter = options?.filterExtensions !== false;
 
         let filesToRead: readonly File[] = rawFiles;
         let notice: string | null = null;
@@ -290,10 +288,14 @@ export function useFiles(initial: FilesMap = {}) {
           );
           filesToRead = filtered.accepted;
           if (filesToRead.length === 0) {
+            const isFolder = rawFiles.some((f) =>
+              Boolean(f.webkitRelativePath && f.webkitRelativePath.includes('/')),
+            );
             dispatch({
               type: 'upload-error',
-              message:
-                'No supported TeX files (.tex, .cls, .sty, .bib, ...) found in the selected folder.',
+              message: `No supported TeX files (.tex, .cls, .sty, .bib, ...) found in the ${
+                isFolder ? 'selected folder' : 'selected files'
+              }.`,
             });
             return;
           }
@@ -324,25 +326,24 @@ export function useFiles(initial: FilesMap = {}) {
       }>,
     ): Promise<void> => {
       try {
-        const dirItems = items.filter((item) => item.fromDirectory);
-        const directItems = items.filter((item) => !item.fromDirectory);
-        let itemsToRead = items;
-        let notice: string | null = null;
+        if (items.length === 0) return;
 
-        if (dirItems.length > 0) {
-          const filtered = filterUploadedBatch(dirItems, (item) => item.relativePath);
-          itemsToRead = [...directItems, ...filtered.accepted];
-          if (itemsToRead.length === 0) {
-            dispatch({
-              type: 'upload-error',
-              message:
-                'No supported TeX files (.tex, .cls, .sty, .bib, ...) found in the dropped folder.',
-            });
-            return;
-          }
-          if (filtered.skippedCount > 0) {
-            notice = `Imported ${itemsToRead.length} TeX project file${itemsToRead.length === 1 ? '' : 's'} (skipped ${filtered.skippedCount} non-TeX file${filtered.skippedCount === 1 ? '' : 's'}).`;
-          }
+        const filtered = filterUploadedBatch(items, (item) => item.relativePath);
+        const itemsToRead = filtered.accepted;
+        if (itemsToRead.length === 0) {
+          const isFolder = items.some((item) => item.fromDirectory);
+          dispatch({
+            type: 'upload-error',
+            message: `No supported TeX files (.tex, .cls, .sty, .bib, ...) found in the ${
+              isFolder ? 'dropped folder' : 'dropped files'
+            }.`,
+          });
+          return;
+        }
+
+        let notice: string | null = null;
+        if (filtered.skippedCount > 0) {
+          notice = `Imported ${itemsToRead.length} TeX project file${itemsToRead.length === 1 ? '' : 's'} (skipped ${filtered.skippedCount} non-TeX file${filtered.skippedCount === 1 ? '' : 's'}).`;
         }
 
         const entries = await Promise.all(
